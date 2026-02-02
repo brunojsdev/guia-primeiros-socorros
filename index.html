@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiros Socorros 2026</title>
+    <!-- Tailwind CSS para o visual sem baixar nada -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons para os ícones -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .step-card:hover { transform: translateY(-4px); }
+        .emergency-grid { display: grid; }
+        .hidden-view { display: none; }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans min-h-screen flex flex-col">
+
+    <!-- Aviso Legal Superior -->
+    <div class="bg-yellow-100 border-b border-yellow-200 p-2 text-center sticky top-0 z-50">
+        <p class="text-yellow-900 text-xs md:text-sm font-bold flex items-center justify-center gap-2 uppercase">
+            <i data-lucide="alert-octagon" class="w-4 h-4"></i>
+            Aviso Legal: Este guia é informativo. Em casos graves, ligue 192.
+        </p>
+    </div>
+
+    <!-- Tela Inicial (Menu) -->
+    <div id="menu-view">
+        <header class="bg-red-600 text-white pb-20 pt-10 px-4 shadow-lg text-center">
+            <div class="inline-flex items-center justify-center p-3 bg-red-700 rounded-full mb-4 shadow-inner">
+                <i data-lucide="heart-pulse" class="w-8 h-8 text-white animate-pulse"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-black mb-4 tracking-tight">Primeiros Socorros</h1>
+            <p class="text-red-100 text-lg max-w-2xl mx-auto font-medium">
+                Guia rápido de resposta para emergências domésticas comuns.
+            </p>
+        </header>
+
+        <main class="container mx-auto px-4 -mt-10 mb-12 max-w-6xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="button-grid">
+                <!-- Botões serão gerados via JS -->
+            </div>
+
+            <!-- Telefones de Emergência -->
+            <div class="mt-12 bg-slate-800 text-white rounded-2xl p-6 md:p-8 shadow-xl border-t-4 border-red-500">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-red-600 p-4 rounded-full shadow-lg shadow-red-900/50">
+                            <i data-lucide="phone" class="w-8 h-8"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Telefones de Emergência</h3>
+                            <p class="text-slate-300 text-sm">Tenha sempre em mãos em caso de gravidade.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 w-full md:w-auto text-center font-black">
+                        <div class="flex-1 md:flex-none bg-slate-700 p-4 rounded-xl border border-slate-600">
+                            <span class="block text-3xl">192</span>
+                            <span class="text-xs text-slate-300 uppercase">SAMU</span>
+                        </div>
+                        <div class="flex-1 md:flex-none bg-slate-700 p-4 rounded-xl border border-slate-600">
+                            <span class="block text-3xl">193</span>
+                            <span class="text-xs text-slate-300 uppercase">BOMBEIROS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Tela de Detalhes (Passo a Passo) -->
+    <div id="detail-view" class="hidden-view flex-grow">
+        <div class="container mx-auto px-4 py-8 max-w-3xl">
+            <button onclick="showMenu()" class="mb-6 flex items-center text-slate-600 hover:text-red-700 font-bold bg-white px-5 py-2 rounded-full shadow-sm border border-slate-200 transition-all">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-2"></i> Voltar ao Início
+            </button>
+
+            <div id="detail-content" class="shadow-2xl rounded-3xl overflow-hidden bg-white border-2 border-slate-200">
+                <!-- Conteúdo gerado via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="bg-white border-t border-slate-200 py-8 text-center px-4 mt-auto">
+        <p class="text-red-600 font-bold mb-2 text-sm uppercase">Em casos graves, sempre ligue para 192 ou vá ao hospital.</p>
+        <p class="text-slate-400 text-sm">© 2026 Projeto Primeiros Socorros</p>
+    </footer>
+
+    <script>
+        const emergencies = [
+            {
+                id: 'burns', title: 'Queimaduras', icon: 'flame', color: 'bg-orange-500', text: 'text-orange-600',
+                steps: [
+                    { t: 'Resfrie a área', c: 'Coloque sob água corrente fria por 15 minutos.' },
+                    { t: 'Proteja a lesão', c: 'Cubra com pano limpo. Não estoure bolhas.' },
+                    { t: 'Procure um médico', c: 'Vá ao hospital para avaliação profissional.' }
+                ],
+                warning: 'NUNCA use gelo, manteiga ou pasta de dente.'
+            },
+            {
+                id: 'cuts', title: 'Cortes', icon: 'scissors', color: 'bg-red-500', text: 'text-red-600',
+                steps: [
+                    { t: 'Comprima o local', c: 'Use um pano limpo e faça pressão direta.' },
+                    { t: 'Limpe o ferimento', c: 'Lave com água e sabão se for superficial.' },
+                    { t: 'Procure um médico', c: 'Se o corte for profundo ou não parar de sangrar.' }
+                ],
+                warning: 'NÃO tente retirar objetos encravados.'
+            },
+            {
+                id: 'choking', title: 'Engasgo', icon: 'wind', color: 'bg-blue-500', text: 'text-blue-600',
+                steps: [
+                    { t: 'Incentive a tosse', c: 'Se a pessoa tossir, não interfira.' },
+                    { t: 'Manobra de Heimlich', c: 'Abrace por trás e pressione a boca do estômago.' },
+                    { t: 'Procure um médico', c: 'Exames internos são necessários após engasgos.' }
+                ],
+                warning: 'Se desmaiar, ligue 192 e inicie massagem cardíaca.'
+            },
+            {
+                id: 'fainting', title: 'Desmaio', icon: 'activity', color: 'bg-purple-500', text: 'text-purple-600',
+                steps: [
+                    { t: 'Deite a pessoa', c: 'Eleve as pernas acima do nível do coração.' },
+                    { t: 'Ventilação', c: 'Afrouxe roupas e garanta ar fresco.' },
+                    { t: 'Procure um médico', c: 'Investigue a causa do desmaio com um profissional.' }
+                ],
+                warning: 'Não ofereça água ou comida até a consciência total.'
+            },
+            {
+                id: 'shock', title: 'Choque Elétrico', icon: 'zap', color: 'bg-yellow-500', text: 'text-yellow-600',
+                steps: [
+                    { t: 'Corte a energia', c: 'Desligue o disjuntor antes de tocar na vítima.' },
+                    { t: 'Afaste o perigo', c: 'Use madeira seca para afastar fios.' },
+                    { t: 'Procure um médico', c: 'Todo choque elétrico requer avaliação cardíaca.' }
+                ],
+                warning: 'Cuidado com chão molhado ao socorrer.'
+            },
+            {
+                id: 'poisoning', title: 'Intoxicação', icon: 'triangle-alert', color: 'bg-green-600', text: 'text-green-700',
+                steps: [
+                    { t: 'Identifique o produto', c: 'Guarde a embalagem para mostrar ao médico.' },
+                    { t: 'Ligue para o SAMU', c: 'Siga exatamente as instruções do 192.' },
+                    { t: 'Vá ao hospital', c: 'Leve a vítima imediatamente ao pronto-socorro.' }
+                ],
+                warning: 'NUNCA provoque vômito sem orientação médica.'
+            }
+        ];
+
+        function renderMenu() {
+            const grid = document.getElementById('button-grid');
+            grid.innerHTML = emergencies.map(e => `
+                <button onclick="showDetail('${e.id}')" class="bg-white p-6 rounded-2xl shadow-md border-2 border-slate-200 hover:border-red-500 text-left step-card transition-all">
+                    <div class="${e.color} w-14 h-14 rounded-xl flex items-center justify-center text-white mb-4 shadow-lg">
+                        <i data-lucide="${e.icon}"></i>
+                    </div>
+                    <h2 class="text-xl font-black text-slate-800">${e.title}</h2>
+                    <p class="text-slate-500 text-sm mt-2">Clique para ver o passo a passo seguro.</p>
+                </button>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function showDetail(id) {
+            const item = emergencies.find(e => e.id === id);
+            const content = document.getElementById('detail-content');
+            
+            content.innerHTML = `
+                <div class="${item.color} p-8 text-white">
+                    <h2 class="text-3xl font-black uppercase tracking-tight">${item.title}</h2>
+                </div>
+                <div class="p-8 space-y-6">
+                    ${item.steps.map((s, i) => `
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 rounded-full ${item.color} flex items-center justify-center font-black flex-shrink-0 border-4 border-white shadow">${i+1}</div>
+                            <div>
+                                <h3 class="font-bold text-lg">${s.t}</h3>
+                                <p class="text-slate-600">${s.c}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                    <div class="bg-red-50 border-l-4 border-red-600 p-4 mt-6">
+                        <p class="font-black text-red-800 uppercase text-xs">Atenção Crítica</p>
+                        <p class="text-red-700 font-medium">${item.warning}</p>
+                    </div>
+                    <button onclick="showMenu()" class="w-full py-4 bg-slate-800 text-white rounded-xl font-bold mt-4 shadow-lg">VOLTAR AO MENU</button>
+                </div>
+            `;
+            
+            document.getElementById('menu-view').classList.add('hidden-view');
+            document.getElementById('detail-view').classList.remove('hidden-view');
+            window.scrollTo(0, 0);
+        }
+
+        function showMenu() {
+            document.getElementById('detail-view').classList.add('hidden-view');
+            document.getElementById('menu-view').classList.remove('hidden-view');
+        }
+
+        renderMenu();
+    </script>
+</body>
+</html>
