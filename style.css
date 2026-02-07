@@ -1,0 +1,14 @@
+/* Efeito de levitação nos cartões */
+.step-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Garante o grid layout */
+.emergency-grid {
+    display: grid;
+}
+
+/* Classe utilitária para esconder telas */
+.hidden-view {
+    display: none;
+}
