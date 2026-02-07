@@ -1,75 +1,42 @@
-# 🏥 SOS Primeiros Socorros Interativo
+# 🚑 Guia de Primeiros Socorros 2026
 
-Aplicação web interativa desenvolvida com HTML, CSS e JavaScript puro, criada para orientar usuários em situações comuns de emergência doméstica por meio de um fluxo guiado e visual.
+Um guia interativo e responsivo focado em fornecer instruções rápidas e claras para emergências domésticas comuns. Este projeto foi desenvolvido com foco em acessibilidade e rapidez de carregamento, ideal para situações de urgência.
 
----
+## 🚀 Tecnologias Utilizadas
 
-## 🎯 Objetivo do Projeto
+- **HTML5:** Estrutura semântica da aplicação.
+- **Tailwind CSS:** Estilização moderna e responsiva via CDN (sem necessidade de instalação).
+- **JavaScript (Vanilla):** Lógica de navegação, renderização dinâmica de conteúdos e manipulação de estado.
+- **Lucide Icons:** Biblioteca de ícones leves e elegantes.
 
-Fornecer instruções claras, diretas e organizadas em formato de passo a passo para primeiros socorros básicos, priorizando usabilidade, acessibilidade e resposta rápida em cenários domésticos.
+## 🛠️ Funcionalidades
 
----
+- **Menu Dinâmico:** Seis categorias principais de emergência (Queimaduras, Cortes, Engasgo, Desmaio, Choque Elétrico e Intoxicação).
+- **Passo a Passo Detalhado:** Instruções numeradas para facilitar a leitura sob pressão.
+- **Alertas Críticos:** Avisos destacados sobre o que **não** fazer em cada situação.
+- **Discagem Rápida:** Atalho visual para os números de emergência (192 SAMU / 193 Bombeiros).
+- **Integração com Portfólio:** Botão fixo no cabeçalho para retorno ao portfólio principal.
 
-## 🚀 Funcionalidades
+## 📂 Estrutura de Arquivos
 
-- Menu inicial com múltiplos cenários de emergência
-- Sistema de navegação por passos (wizard)
-- Alertas visuais para ações que não devem ser realizadas
-- Interface responsiva e adaptada para dispositivos móveis
-- Destaque visual por tipo de emergência
-- Telefones de emergência sempre visíveis
-- Retorno ao menu a qualquer momento
+O projeto está organizado de forma modular para fácil manutenção:
 
----
+- `index.html`: Contém a estrutura da página e as chamadas para os scripts e estilos.
+- `style.css`: Regras de CSS personalizadas e animações de transição.
+- `script.js`: Toda a base de dados das emergências e as funções que controlam a troca de telas.
 
-## 🧩 Cenários Disponíveis
+## 🌐 Como Rodar o Projeto
 
-- Queimaduras
-- Cortes e sangramentos
-- Engasgo em adultos
-- Desmaio
-- Choque elétrico
-- Intoxicação
+Como o projeto utiliza CDNs para o CSS e Ícones, você não precisa instalar nada no seu computador:
 
----
+1. Baixe os três arquivos (`index.html`, `style.css`, `script.js`).
+2. Coloque-os todos na mesma pasta.
+3. Abra o arquivo `index.html` em qualquer navegador moderno.
 
-## 🛠️ Tecnologias Utilizadas
+## 🔗 Link do Portfólio
 
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
-
----
-
-## 📱 Design e Experiência do Usuário
-
-- Layout em grid responsivo
-- Cartões interativos para seleção de cenários
-- Animações suaves de transição
-- Cores semânticas para reforço visual
-- Interface clara e objetiva, focada em situações de urgência
+Este projeto faz parte do portfólio de **Bruno JS Dev**.
+[Acesse o Portfólio Completo](https://brunojsdev.github.io/meu-portfolio/)
 
 ---
-
-## 📦 Como executar o projeto
-
-1. Clone o repositório
-2. Abra o arquivo `index.html` em qualquer navegador moderno
-
----
-
-## 📞 Telefones de Emergência
-
-- 192 — SAMU
-- 193 — Bombeiros
-
----
-
-## ⚠️ Aviso Legal
-
-Este projeto tem caráter exclusivamente informativo e educacional.  
-Em situações reais de emergência, procure imediatamente os serviços médicos especializados.
-
----
-
-© 2026 — Projeto Primeiros Socorros Interativo
+> **⚠️ Aviso Legal:** Este aplicativo tem caráter estritamente informativo. Ele não substitui o atendimento médico profissional. Em qualquer emergência real, a primeira ação deve ser ligar para o **192 (SAMU)**.
