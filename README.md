@@ -1,4 +1,4 @@
-# 🚑 Guia de Primeiros Socorros 2026
+# 🚑 Guia de Primeiros Socorros
 
 Um guia interativo e responsivo focado em fornecer instruções rápidas e claras para emergências domésticas comuns. Este projeto foi desenvolvido com foco em acessibilidade e rapidez de carregamento, ideal para situações de urgência.
 
