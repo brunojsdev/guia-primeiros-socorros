@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Primeiros Socorros | Guia Rápido</title>
     
-    <!-- Google Fonts: Inter para legibilidade moderna -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -16,7 +16,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuração Avançada do Tailwind (Mostra domínio do framework) -->
+    <!-- Configuração do Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -25,31 +25,15 @@
                         sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
-                        // Paleta do Portfólio
-                        'bg-dark': '#040014',
-                        'bg-mid': '#090024',
-                        'bg-light': '#150136',
-                        'accent-light': '#5752ff',
-                        'accent-dark': '#5a47ff',
-                        'warn-light': '#ffdd00',
-                        'warn-mid': '#ffaa00',
-                        'text-main': '#c9e4ff',
-                        // Cor funcional para emergências reais
-                        'danger': '#e11d48', 
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.3s ease-out forwards',
-                        'slide-up': 'slideUp 0.4s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
+                        // Nova paleta: Roxo mais claro com contrastes
+                        'roxo-bg': '#4A2B99',      // Roxo principal do fundo
+                        'roxo-escuro': '#150136',  // Roxo escuro original (para textos e header)
+                        'roxo-hover': '#5D38B4',   // Roxo para interações
+                        'destaque-amarelo': '#ffdd00',
+                        'destaque-laranja': '#ffaa00',
+                        'destaque-escuro': '#ff9900',
+                        'texto-claro': '#F4F0FF',
+                        'card-bg': '#FFFFFF',      // Cards brancos para visual "clínico/limpo"
                     }
                 }
             }
@@ -57,24 +41,18 @@
     </script>
 
     <style>
-        /* Estilos Customizados de Scrollbar e Utilidades */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #040014; }
-        ::-webkit-scrollbar-thumb { background: #150136; border-radius: 4px; border: 1px solid #5752ff; }
-        ::-webkit-scrollbar-thumb:hover { background: #5a47ff; }
-        
-        /* Ocultar visualizações */
+        /* Ocultar visualizações via JS */
         .hidden-view { display: none !important; }
         
-        /* Linha da timeline */
+        /* Linha da timeline para o passo a passo */
         .timeline-line::before {
             content: '';
             position: absolute;
-            left: 1.25rem; /* Alinhado com o centro do ícone numerado */
+            left: 1.25rem;
             top: 3rem;
             bottom: -1rem;
-            width: 2px;
-            background: #150136;
+            width: 3px;
+            background: #f1f5f9; /* cinza bem claro */
             z-index: 0;
         }
         .timeline-item:last-child .timeline-line::before {
@@ -82,175 +60,163 @@
         }
     </style>
 </head>
-<body class="bg-bg-dark text-text-main min-h-screen flex flex-col antialiased selection:bg-accent-light selection:text-white">
+<body class="bg-roxo-bg text-slate-800 min-h-screen flex flex-col antialiased">
 
-    <!-- Modal de Disclaimer (Compliance) -->
-    <div id="disclaimer-modal" class="fixed inset-0 bg-bg-dark/90 backdrop-blur-md z-[100] flex items-center justify-center p-4 transition-opacity duration-300">
-        <div class="bg-bg-light border border-accent-light/30 rounded-3xl max-w-lg w-full p-8 shadow-[0_0_40px_rgba(87,82,255,0.15)] transform transition-transform duration-300 scale-100" id="modal-content">
-            <div class="flex items-center gap-4 mb-6 text-warn-mid">
-                <i data-lucide="shield-alert" class="w-10 h-10"></i>
-                <h2 class="text-2xl font-black tracking-tight text-white">Aviso Legal</h2>
-            </div>
-            <p class="text-text-main/80 text-sm leading-relaxed mb-4">
-                Este aplicativo é um <strong>projeto acadêmico de portfólio</strong> desenvolvido para demonstrar habilidades em programação Front-end.
-            </p>
-            <p class="text-text-main/80 text-sm leading-relaxed mb-8">
-                As informações aqui contidas são resumos informativos e <strong>não substituem orientação médica profissional</strong>. Em caso de emergência real, acione os serviços de socorro imediatamente.
-            </p>
-            <button id="btn-accept-disclaimer" class="w-full py-4 bg-accent-light hover:bg-accent-dark text-white rounded-xl font-bold transition-all shadow-lg hover:shadow-accent-light/50 active:scale-[0.98] flex justify-center items-center gap-2">
-                <span>Entendi e aceito</span>
-                <i data-lucide="check" class="w-5 h-5"></i>
-            </button>
-        </div>
-    </div>
-
-    <!-- Header Fixo -->
-    <header class="sticky top-0 z-40 bg-bg-dark/80 backdrop-blur-md border-b border-bg-light">
-        <div class="container mx-auto max-w-5xl px-4 h-16 flex items-center justify-between">
-            <a href="https://brunojsdev.github.io/meu-portfolio/" class="flex items-center gap-2 text-xs font-semibold text-text-main/70 hover:text-accent-light transition-colors group">
+    <!-- Header Full-width (Botão à extrema esquerda) -->
+    <header class="bg-roxo-escuro w-full shadow-md sticky top-0 z-40">
+        <div class="w-full px-4 md:px-8 h-16 flex items-center justify-between">
+            <!-- Botão Voltar (Extrema Esquerda) -->
+            <a href="https://brunojsdev.github.io/meu-portfolio/" class="flex items-center gap-2 text-destaque-amarelo text-xs md:text-sm font-bold hover:text-white transition-colors group px-2 py-1 rounded-lg hover:bg-white/10">
                 <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-                <span class="hidden sm:inline">Portfólio</span>
+                <span class="hidden sm:inline">Voltar ao Portfólio</span>
+                <span class="sm:hidden">Voltar</span>
             </a>
             
-            <div class="flex items-center gap-2">
-                <i data-lucide="heart-pulse" class="w-5 h-5 text-accent-light animate-pulse"></i>
-                <h1 class="font-bold text-white tracking-wide">Primeiros<span class="text-accent-light">Socorros</span></h1>
+            <!-- Logo (Centro) -->
+            <div class="flex items-center gap-2 absolute left-1/2 transform -translate-x-1/2">
+                <div class="bg-destaque-laranja p-1.5 rounded-lg">
+                    <i data-lucide="heart-pulse" class="w-4 h-4 text-roxo-escuro"></i>
+                </div>
+                <h1 class="font-black text-white tracking-tight hidden xs:block">Primeiros Socorros</h1>
             </div>
-            
-            <div class="w-16"></div> <!-- Espaçador para centralizar o logo -->
         </div>
     </header>
 
     <!-- ÁREA DE MENU PRINCIPAL -->
-    <main id="view-menu" class="flex-grow container mx-auto max-w-5xl px-4 py-8 animate-fade-in">
+    <main id="view-menu" class="flex-grow w-full px-4 md:px-8 py-8 max-w-7xl mx-auto">
         
-        <!-- Header da Página -->
-        <div class="text-center mb-10 mt-4">
-            <h2 class="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Guia Rápido de <br class="md:hidden">Resposta</h2>
-            <p class="text-text-main/70 max-w-xl mx-auto">Informações essenciais para estabilizar situações de emergência até a chegada do socorro profissional.</p>
+        <!-- Aviso Legal Integrado (Alaranjado/Amarelo) -->
+        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-2xl p-5 mb-10 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-destaque-escuro/30">
+            <div class="bg-roxo-escuro text-destaque-amarelo p-3 rounded-full shrink-0">
+                <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+            </div>
+            <div>
+                <h2 class="text-roxo-escuro font-black text-lg uppercase tracking-tight mb-1">Aviso Legal Importante</h2>
+                <p class="text-roxo-escuro/80 text-sm font-semibold leading-snug">
+                    Este é um projeto acadêmico de demonstração técnica (Portfólio). <strong>Não substitui orientação médica.</strong> Em emergências reais, acione imediatamente o SAMU (192) ou Bombeiros (193).
+                </p>
+            </div>
         </div>
 
-        <!-- Barra de Busca -->
-        <div class="relative max-w-2xl mx-auto mb-10 group">
-            <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-text-main/50 group-focus-within:text-accent-light transition-colors">
-                <i data-lucide="search" class="w-5 h-5"></i>
+        <!-- Título e Busca -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+            <div class="text-texto-claro">
+                <h2 class="text-3xl md:text-4xl font-black mb-2">Qual é a emergência?</h2>
+                <p class="text-texto-claro/80">Busque ou selecione o protocolo de atendimento.</p>
             </div>
-            <input type="text" id="search-input" placeholder="Buscar emergência (ex: engasgo, queimadura)..." 
-                class="w-full bg-bg-light border border-accent-light/20 rounded-2xl py-4 pl-12 pr-4 text-white placeholder-text-main/40 focus:border-accent-light focus:ring-1 focus:ring-accent-light outline-none transition-all shadow-lg">
+            
+            <div class="relative w-full md:w-96 shrink-0 group">
+                <div class="absolute inset-y-0 left-4 flex items-center pointer-events-none text-roxo-bg">
+                    <i data-lucide="search" class="w-5 h-5"></i>
+                </div>
+                <input type="text" id="search-input" placeholder="Ex: Queimadura, Engasgo..." 
+                    class="w-full bg-white border-2 border-transparent rounded-xl py-3 pl-12 pr-4 text-roxo-escuro font-semibold placeholder-slate-400 focus:border-destaque-laranja focus:ring-0 outline-none transition-all shadow-md">
+            </div>
         </div>
 
         <!-- Grid de Cards -->
-        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Injetado via JS -->
         </div>
 
         <!-- Mensagem de "Não encontrado" -->
-        <div id="no-results" class="hidden-view text-center py-12">
-            <i data-lucide="search-x" class="w-12 h-12 text-text-main/30 mx-auto mb-4"></i>
-            <h3 class="text-xl font-bold text-white mb-2">Nenhuma emergência encontrada</h3>
-            <p class="text-text-main/60">Tente buscar por outras palavras-chave.</p>
+        <div id="no-results" class="hidden-view text-center py-16 bg-white/10 rounded-3xl mt-6">
+            <i data-lucide="search-x" class="w-16 h-16 text-destaque-amarelo mx-auto mb-4 opacity-80"></i>
+            <h3 class="text-2xl font-bold text-white mb-2">Nenhum resultado</h3>
+            <p class="text-texto-claro/80">Tente buscar usando outros termos.</p>
         </div>
     </main>
 
     <!-- ÁREA DE DETALHES DA EMERGÊNCIA -->
-    <main id="view-detail" class="hidden-view flex-grow container mx-auto max-w-3xl px-4 py-8">
+    <main id="view-detail" class="hidden-view flex-grow w-full px-4 md:px-8 py-8 max-w-4xl mx-auto">
         
-        <button id="btn-back" class="mb-6 flex items-center gap-2 text-text-main/70 hover:text-white bg-bg-light px-5 py-2.5 rounded-full border border-accent-light/20 hover:border-accent-light transition-all text-sm font-semibold group">
+        <!-- Botão Voltar Interno -->
+        <button id="btn-back" class="mb-6 flex items-center gap-2 text-texto-claro hover:text-destaque-amarelo bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-full backdrop-blur-sm transition-all text-sm font-bold group border border-white/10">
             <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
-            Voltar ao painel
+            Voltar às opções
         </button>
 
-        <article id="detail-content" class="bg-bg-mid border border-bg-light rounded-3xl overflow-hidden shadow-2xl animate-slide-up">
+        <!-- Container do Conteúdo -->
+        <article id="detail-content" class="bg-card-bg rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
             <!-- Injetado via JS -->
         </article>
 
     </main>
 
     <!-- Footer -->
-    <footer class="bg-bg-light/50 border-t border-bg-light py-8 text-center mt-auto">
-        <p class="text-text-main/50 text-xs mb-2">Projeto de demonstração técnica.</p>
-        <p class="text-text-main/80 font-semibold text-sm">© 2026 Desenvolvido por <span class="text-accent-light">Bruno</span></p>
+    <footer class="bg-roxo-escuro py-8 text-center mt-auto w-full">
+        <p class="text-destaque-amarelo font-bold text-sm mb-2">Em emergências graves: LIGUE 192</p>
+        <p class="text-texto-claro/50 text-xs">© 2026 Desenvolvido por Bruno - Projeto de Portfólio</p>
     </footer>
 
-    <!-- FAB (Floating Action Button) - Chamada Rápida 192 -->
-    <a href="tel:192" class="fixed bottom-6 right-6 z-50 bg-danger text-white p-4 rounded-full shadow-[0_0_20px_rgba(225,29,72,0.4)] hover:scale-105 active:scale-95 transition-all flex items-center justify-center group border-2 border-red-400/30">
-        <i data-lucide="phone-call" class="w-6 h-6 animate-[bounce_2s_infinite]"></i>
-        <span class="max-w-0 overflow-hidden group-hover:max-w-xs group-hover:ml-3 transition-all duration-300 font-bold whitespace-nowrap text-sm">
-            LIGAR 192
-        </span>
-    </a>
-
-    <!-- Lógica JavaScript Separada e Organizada -->
+    <!-- Lógica JavaScript -->
     <script>
-        // 1. DADOS (Data Layer)
-        // Adicionada a propriedade 'tags' para melhorar a busca
+        // 1. DADOS
         const emergencies = [
             {
-                id: 'burns', title: 'Queimaduras', icon: 'flame', color: 'text-warn-mid', 
+                id: 'burns', title: 'Queimaduras', icon: 'flame', 
                 tags: ['fogo', 'quente', 'óleo', 'sol', 'calor'],
                 steps: [
-                    { t: 'Resfrie a área', c: 'Coloque a lesão sob água corrente fria (não gelada) por 10 a 15 minutos.' },
-                    { t: 'Proteja a lesão', c: 'Cubra com um pano limpo e úmido. Nunca estoure as bolhas.' },
-                    { t: 'Avaliação Médica', c: 'Vá ao hospital se a queimadura for maior que a palma da mão ou no rosto.' }
+                    { t: 'Resfrie a área afetada', c: 'Coloque a lesão sob água corrente fria (não gelada) por 10 a 15 minutos para interromper a queimação.' },
+                    { t: 'Proteja a lesão limpa', c: 'Cubra com um pano limpo, úmido e que não solte fiapos. Nunca estoure as bolhas.' },
+                    { t: 'Busque avaliação médica', c: 'Vá ao hospital se a queimadura for maior que a palma da mão, no rosto ou genitais.' }
                 ],
                 warning: 'NUNCA aplique gelo, manteiga, creme dental ou pó de café na queimadura.'
             },
             {
-                id: 'cuts', title: 'Cortes Profundos', icon: 'scissors', color: 'text-accent-light',
+                id: 'cuts', title: 'Cortes Profundos', icon: 'scissors',
                 tags: ['sangramento', 'faca', 'vidro', 'ferimento', 'sangue'],
                 steps: [
                     { t: 'Comprima o local', c: 'Use um pano limpo ou gaze e faça pressão direta e firme sobre o corte.' },
-                    { t: 'Eleve o membro', c: 'Se for no braço ou perna, eleve-o acima do nível do coração para reduzir o fluxo sanguíneo.' },
-                    { t: 'Busque Ajuda', c: 'Se o sangramento não parar após 10 minutos de pressão, vá ao pronto-socorro.' }
+                    { t: 'Eleve o membro', c: 'Se for no braço ou perna, eleve-o acima do nível do coração para ajudar a reduzir o fluxo sanguíneo.' },
+                    { t: 'Mantenha a pressão', c: 'Se o sangramento não parar após 10 minutos de pressão contínua, vá ao pronto-socorro.' }
                 ],
                 warning: 'NÃO tente retirar objetos encravados (facas, vidros). Fixe-os no local e ligue 192.'
             },
             {
-                id: 'choking', title: 'Engasgo', icon: 'wind', color: 'text-text-main',
+                id: 'choking', title: 'Engasgo', icon: 'wind',
                 tags: ['sufocamento', 'comida', 'ar', 'respirar', 'heimlich'],
                 steps: [
-                    { t: 'Avalie a situação', c: 'Se a pessoa consegue tossir ou falar, apenas incentive-a a tossir. Não interfira.' },
-                    { t: 'Manobra de Heimlich', c: 'Se ela não respira: abrace-a por trás, posicione as mãos acima do umbigo e faça compressões para dentro e para cima.' },
-                    { t: 'Repita', c: 'Continue até o objeto ser expulso ou a vítima desmaiar (neste caso, inicie RCP).' }
+                    { t: 'Avalie a tosse', c: 'Se a pessoa consegue tossir com força ou falar, apenas incentive-a a tossir. Não bata nas costas.' },
+                    { t: 'Manobra de Heimlich', c: 'Se ela não respira: abrace-a por trás, posicione as mãos (fechadas) acima do umbigo e faça compressões para dentro e para cima.' },
+                    { t: 'Repita o processo', c: 'Continue até o objeto ser expulso ou a vítima desmaiar (neste caso, deite-a e inicie RCP).' }
                 ],
-                warning: 'Mesmo após desengasgar, exames médicos são necessários para checar lesões internas.'
+                warning: 'Mesmo após desengasgar, exames médicos são recomendados para checar lesões internas.'
             },
             {
-                id: 'fainting', title: 'Desmaio', icon: 'activity', color: 'text-accent-dark',
+                id: 'fainting', title: 'Desmaio', icon: 'activity',
                 tags: ['consciência', 'caiu', 'tontura', 'pressão'],
                 steps: [
-                    { t: 'Posicionamento', c: 'Deite a pessoa de barriga para cima e eleve as pernas dela cerca de 30cm.' },
-                    { t: 'Facilite a respiração', c: 'Afrouxe roupas apertadas no pescoço e cintura. Mantenha o ambiente arejado.' },
-                    { t: 'Acompanhamento', c: 'Se não acordar em 1 minuto, ligue 192 e coloque-a deitada de lado.' }
+                    { t: 'Posicione a vítima', c: 'Deite a pessoa de barriga para cima e eleve as pernas dela cerca de 30 a 40 centímetros do chão.' },
+                    { t: 'Facilite a respiração', c: 'Afrouxe roupas apertadas no pescoço e cintura. Mantenha o ambiente arejado e afaste curiosos.' },
+                    { t: 'Monitore o retorno', c: 'Se não acordar em 1 minuto ou não estiver respirando, ligue 192 imediatamente.' }
                 ],
                 warning: 'NÃO jogue água no rosto nem ofereça álcool/comida para a pessoa cheirar ou engolir.'
             },
             {
-                id: 'shock', title: 'Choque Elétrico', icon: 'zap', color: 'text-warn-light',
+                id: 'shock', title: 'Choque Elétrico', icon: 'zap',
                 tags: ['raio', 'tomada', 'fio', 'energia', 'eletricidade'],
                 steps: [
-                    { t: 'Corte a fonte', c: 'Desligue imediatamente a chave geral ou disjuntor antes de qualquer outra ação.' },
-                    { t: 'Afaste a vítima', c: 'Se não puder desligar a energia, use um objeto seco e não condutor (cabo de vassoura de madeira) para afastar o fio.' },
-                    { t: 'Cheque os sinais', c: 'Verifique se a pessoa respira. Se não, inicie massagem cardíaca e peça para ligarem 192.' }
+                    { t: 'Corte a fonte de energia', c: 'Desligue imediatamente a chave geral, disjuntor ou tire da tomada antes de qualquer outra ação.' },
+                    { t: 'Afaste a vítima com segurança', c: 'Se não puder desligar a energia, use um objeto totalmente seco e não condutor (cabo de vassoura de madeira, borracha) para afastar o fio.' },
+                    { t: 'Cheque os sinais vitais', c: 'Verifique se a pessoa respira. Se não, inicie massagem cardíaca e peça para ligarem 192.' }
                 ],
-                warning: 'NUNCA toque na vítima enquanto ela estiver em contato com a corrente elétrica.'
+                warning: 'NUNCA toque na vítima com as mãos desprotegidas enquanto ela estiver em contato com a eletricidade.'
             },
             {
-                id: 'poison', title: 'Intoxicação', icon: 'flask-conical', color: 'text-danger',
+                id: 'poison', title: 'Intoxicação', icon: 'flask-conical',
                 tags: ['veneno', 'produto de limpeza', 'remédio', 'ingeriu'],
                 steps: [
-                    { t: 'Identifique a causa', c: 'Descubra o que foi ingerido e guarde a embalagem ou frasco.' },
-                    { t: 'Ligue para ajuda', c: 'Ligue para o CIATox (0800 722 6001) ou SAMU (192) e siga as instruções rigorosamente.' },
-                    { t: 'Posição lateral', c: 'Deixe a vítima deitada de lado caso ela vomite ou perca a consciência.' }
+                    { t: 'Identifique o agente', c: 'Descubra o que foi ingerido, inalado ou tocou a pele. Guarde a embalagem ou frasco.' },
+                    { t: 'Busque ajuda especializada', c: 'Ligue para o CIATox (0800 722 6001) ou SAMU (192) e siga as instruções rigorosamente.' },
+                    { t: 'Posição de segurança', c: 'Deixe a vítima deitada de lado caso ela vomite, para evitar que ela sufoque.' }
                 ],
                 warning: 'NUNCA provoque vômito ou ofereça leite/água sem orientação médica expressa.'
             }
         ];
 
-        // 2. ELEMENTOS DO DOM (View Layer)
+        // 2. ELEMENTOS DO DOM
         const els = {
-            modal: document.getElementById('disclaimer-modal'),
-            btnAccept: document.getElementById('btn-accept-disclaimer'),
             viewMenu: document.getElementById('view-menu'),
             viewDetail: document.getElementById('view-detail'),
             cardsGrid: document.getElementById('cards-grid'),
@@ -260,23 +226,14 @@
             btnBack: document.getElementById('btn-back')
         };
 
-        // 3. LÓGICA DA APLICAÇÃO (Controller Layer)
-
-        // Inicialização
+        // 3. LÓGICA DA APLICAÇÃO
         function init() {
-            // Verifica se já aceitou o disclaimer na sessão atual
-            if (!sessionStorage.getItem('disclaimerAccepted')) {
-                els.modal.classList.remove('hidden');
-            } else {
-                els.modal.classList.add('hidden-view');
-            }
-
             renderCards(emergencies);
             lucide.createIcons();
             setupEventListeners();
         }
 
-        // Renderiza os cards na tela inicial
+        // Renderiza os Cards (Brancos com detalhes Laranja/Roxo)
         function renderCards(data) {
             els.cardsGrid.innerHTML = '';
             
@@ -290,12 +247,12 @@
             els.noResults.classList.add('hidden-view');
 
             const html = data.map(item => `
-                <button data-id="${item.id}" class="emergency-card bg-bg-light border border-bg-light hover:border-accent-light/50 p-6 rounded-3xl text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(87,82,255,0.1)] group">
-                    <div class="bg-bg-dark w-14 h-14 rounded-2xl flex items-center justify-center mb-5 border border-accent-light/10 group-hover:border-accent-light/30 transition-colors">
-                        <i data-lucide="${item.icon}" class="w-7 h-7 ${item.color}"></i>
+                <button data-id="${item.id}" class="emergency-card bg-card-bg p-6 rounded-3xl text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-xl group border-b-4 border-transparent hover:border-destaque-laranja flex flex-col h-full">
+                    <div class="bg-roxo-bg w-14 h-14 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-destaque-laranja transition-colors duration-300 shadow-md">
+                        <i data-lucide="${item.icon}" class="w-7 h-7 text-white group-hover:text-roxo-escuro"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-accent-light transition-colors">${item.title}</h3>
-                    <p class="text-text-main/50 text-sm leading-relaxed">Clique para ver o protocolo de segurança.</p>
+                    <h3 class="text-xl font-black text-roxo-escuro mb-2">${item.title}</h3>
+                    <p class="text-slate-500 text-sm leading-relaxed mt-auto">Clique para ver as instruções de primeiros socorros.</p>
                 </button>
             `).join('');
 
@@ -303,52 +260,48 @@
             lucide.createIcons();
         }
 
-        // Monta a tela de detalhes com a Timeline
+        // Renderiza o Detalhe
         function renderDetail(id) {
             const item = emergencies.find(e => e.id === id);
             if (!item) return;
 
             const stepsHtml = item.steps.map((step, index) => `
-                <div class="relative pl-12 pb-8 timeline-item">
+                <div class="relative pl-14 pb-10 timeline-item">
                     <div class="timeline-line"></div>
-                    <div class="absolute left-0 top-0 w-10 h-10 bg-bg-dark border-2 border-accent-light text-accent-light rounded-full flex items-center justify-center font-black shadow-[0_0_10px_rgba(87,82,255,0.2)] z-10">
+                    <div class="absolute left-0 top-0 w-10 h-10 bg-roxo-bg text-white rounded-full flex items-center justify-center font-black shadow-md z-10 text-lg">
                         ${index + 1}
                     </div>
-                    <h4 class="text-lg font-bold text-white mb-1">${step.t}</h4>
-                    <p class="text-text-main/70 leading-relaxed text-sm md:text-base">${step.c}</p>
+                    <h4 class="text-lg font-black text-roxo-escuro mb-2">${step.t}</h4>
+                    <p class="text-slate-600 leading-relaxed">${step.c}</p>
                 </div>
             `).join('');
 
             els.detailContent.innerHTML = `
-                <div class="bg-bg-light p-8 md:p-10 border-b border-accent-light/20 relative overflow-hidden">
-                    <!-- Detalhe de fundo visual -->
-                    <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-accent-light opacity-5 rounded-full blur-3xl"></div>
-                    
-                    <div class="flex items-center gap-4 relative z-10">
-                        <div class="bg-bg-dark p-3 rounded-xl border border-accent-light/20">
-                            <i data-lucide="${item.icon}" class="w-8 h-8 ${item.color}"></i>
+                <!-- Header do Card -->
+                <div class="bg-gradient-to-r from-roxo-bg to-roxo-hover p-8 md:p-10 relative">
+                    <div class="flex items-center gap-5 relative z-10">
+                        <div class="bg-white p-4 rounded-2xl shadow-lg">
+                            <i data-lucide="${item.icon}" class="w-10 h-10 text-destaque-laranja"></i>
                         </div>
-                        <h2 class="text-2xl md:text-3xl font-black text-white tracking-tight">${item.title}</h2>
+                        <h2 class="text-3xl md:text-4xl font-black text-white tracking-tight">${item.title}</h2>
                     </div>
                 </div>
                 
-                <div class="p-8 md:p-10 bg-bg-mid">
-                    <h3 class="text-xs uppercase tracking-widest text-text-main/50 font-bold mb-8">Passo a Passo Oficial</h3>
+                <!-- Corpo do Card -->
+                <div class="p-8 md:p-10 bg-white">
+                    <h3 class="text-sm uppercase tracking-widest text-slate-400 font-bold mb-8">Passo a Passo</h3>
                     
                     <div class="relative">
                         ${stepsHtml}
                     </div>
 
-                    <div class="mt-4 bg-warn-mid/10 border border-warn-mid/30 rounded-2xl p-5 flex gap-4 items-start">
-                        <i data-lucide="triangle-alert" class="w-6 h-6 text-warn-mid flex-shrink-0 mt-0.5"></i>
+                    <!-- Alerta com as cores solicitadas -->
+                    <div class="mt-6 bg-yellow-50 border-l-4 border-destaque-laranja rounded-r-2xl p-6 flex gap-4 items-start shadow-sm">
+                        <i data-lucide="triangle-alert" class="w-7 h-7 text-destaque-laranja flex-shrink-0"></i>
                         <div>
-                            <h5 class="text-warn-mid font-bold text-sm uppercase tracking-wide mb-1">Atenção Crítica</h5>
-                            <p class="text-white/90 text-sm leading-relaxed">${item.warning}</p>
+                            <h5 class="text-destaque-escuro font-black uppercase tracking-wide mb-1">Aviso Crítico</h5>
+                            <p class="text-slate-800 font-medium leading-relaxed">${item.warning}</p>
                         </div>
-                    </div>
-
-                    <div class="mt-8 text-center border-t border-bg-light pt-6">
-                        <p class="text-xs text-text-main/40 italic">Fonte base: Protocolos padrão de primeiros socorros. Procure sempre ajuda médica.</p>
                     </div>
                 </div>
             `;
@@ -361,19 +314,9 @@
             window.scrollTo(0, 0);
         }
 
-        // Configura todos os ouvintes de eventos
+        // Ouvintes de Eventos
         function setupEventListeners() {
-            // Aceitar Modal
-            els.btnAccept.addEventListener('click', () => {
-                els.modal.style.opacity = '0';
-                els.modal.querySelector('#modal-content').style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    els.modal.classList.add('hidden-view');
-                    sessionStorage.setItem('disclaimerAccepted', 'true');
-                }, 300);
-            });
-
-            // Busca (Search)
+            // Filtro de Busca
             els.searchInput.addEventListener('input', (e) => {
                 const term = e.target.value.toLowerCase().trim();
                 const filtered = emergencies.filter(item => 
@@ -383,7 +326,7 @@
                 renderCards(filtered);
             });
 
-            // Event Delegation para os Cards (Melhor performance)
+            // Clique nos Cards (Delegação de Eventos)
             els.cardsGrid.addEventListener('click', (e) => {
                 const card = e.target.closest('.emergency-card');
                 if (card) {
@@ -392,16 +335,16 @@
                 }
             });
 
-            // Botão Voltar
+            // Botão Voltar Interno
             els.btnBack.addEventListener('click', () => {
                 els.viewDetail.classList.add('hidden-view');
                 els.viewMenu.classList.remove('hidden-view');
-                els.searchInput.value = ''; // Limpa a busca ao voltar
+                els.searchInput.value = '';
                 renderCards(emergencies);
             });
         }
 
-        // Inicia o app quando o DOM estiver pronto
+        // Iniciar
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
