@@ -1,7 +1,7 @@
-/* Ocultar visualizações via JS */
+/* Utility to hide views */
 .hidden-view { display: none !important; }
 
-/* Linha da timeline para o passo a passo */
+/* Timeline design for step-by-step instructions */
 .timeline-line::before {
     content: '';
     position: absolute;
@@ -17,7 +17,11 @@
     display: none;
 }
 
-/* Transições suaves para os cards */
+/* Card hover and smooth transitions */
 .emergency-card {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item {
+    position: relative;
 }
