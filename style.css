@@ -1,7 +1,5 @@
 /* Ocultar visualizações via JS */
-.hidden-view { 
-    display: none !important; 
-}
+.hidden-view { display: none !important; }
 
 /* Linha da timeline para o passo a passo */
 .timeline-line::before {
@@ -11,10 +9,15 @@
     top: 3rem;
     bottom: -1rem;
     width: 3px;
-    background: #f1f5f9; /* cinza bem claro */
+    background: #f1f5f9;
     z-index: 0;
 }
 
 .timeline-item:last-child .timeline-line::before {
     display: none;
+}
+
+/* Transições suaves para os cards */
+.emergency-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
