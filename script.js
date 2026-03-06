@@ -1,4 +1,6 @@
-// Banco de dados das emergências
+/**
+ * Emergency database with protocols and metadata
+ */
 const emergencies = [
     {
         id: 'burns', title: 'Queimaduras', icon: 'flame', 
@@ -48,21 +50,21 @@ const emergencies = [
             { t: 'Afaste a vítima', c: 'Use um objeto de madeira seco se não puder desligar a energia.' },
             { t: 'Cheque sinais vitais', c: 'Verifique respiração e inicie RCP se necessário.' }
         ],
-        warning: 'NUNCA toque na vítima enquanto ela estiver em contato com a luz.'
+        warning: 'NUNCA toque na vítima enquanto ela estiver em contato com a rede elétrica.'
     },
     {
         id: 'poison', title: 'Intoxicação', icon: 'flask-conical',
         tags: ['veneno', 'limpeza', 'remédio'],
         steps: [
             { t: 'Identifique o agente', c: 'Descubra o que foi ingerido e guarde a embalagem.' },
-            { t: 'Busque ajuda', c: 'Ligue para o CIATox (0800 722 6001) ou SAMU (192).' },
+            { t: 'Busque ajuda especializada', c: 'Ligue para o CIATox (0800 722 6001) ou SAMU (192).' },
             { t: 'Posição de segurança', c: 'Deite a vítima de lado para evitar sufocamento por vômito.' }
         ],
         warning: 'NUNCA provoque vômito sem orientação médica expressa.'
     }
 ];
 
-// Elementos do DOM
+// DOM Element References
 const els = {
     viewMenu: document.getElementById('view-menu'),
     viewDetail: document.getElementById('view-detail'),
@@ -73,7 +75,9 @@ const els = {
     btnBack: document.getElementById('btn-back')
 };
 
-// Renderização dos cards iniciais
+/**
+ * Render list of emergency cards based on provided data
+ */
 function renderCards(data) {
     els.cardsGrid.innerHTML = '';
     
@@ -92,14 +96,16 @@ function renderCards(data) {
                 <i data-lucide="${item.icon}" class="w-7 h-7 text-white group-hover:text-roxo-escuro"></i>
             </div>
             <h3 class="text-xl font-black text-roxo-escuro mb-2">${item.title}</h3>
-            <p class="text-slate-500 text-sm mt-auto">Clique para ver instruções.</p>
+            <p class="text-slate-500 text-sm mt-auto">Clique para instruções rápidas.</p>
         </button>
     `).join('');
     
     lucide.createIcons();
 }
 
-// Renderização dos detalhes
+/**
+ * Render detailed step-by-step for a specific emergency
+ */
 function renderDetail(id) {
     const item = emergencies.find(e => e.id === id);
     if (!item) return;
@@ -125,12 +131,12 @@ function renderDetail(id) {
             </div>
         </div>
         <div class="p-8 bg-white">
-            <h3 class="text-sm uppercase tracking-widest text-slate-400 font-bold mb-8">Passo a Passo</h3>
+            <h3 class="text-sm uppercase tracking-widest text-slate-400 font-bold mb-8">Protocolo de Atendimento</h3>
             <div class="relative">${stepsHtml}</div>
             <div class="mt-6 bg-yellow-50 border-l-4 border-destaque-laranja rounded-r-2xl p-6 flex gap-4">
                 <i data-lucide="triangle-alert" class="w-7 h-7 text-destaque-laranja flex-shrink-0"></i>
                 <div>
-                    <h5 class="text-destaque-escuro font-black uppercase mb-1 text-sm">Aviso Crítico</h5>
+                    <h5 class="text-destaque-escuro font-black uppercase mb-1 text-sm">Cuidado Importante</h5>
                     <p class="text-slate-800 font-medium">${item.warning}</p>
                 </div>
             </div>
@@ -143,12 +149,15 @@ function renderDetail(id) {
     window.scrollTo(0, 0);
 }
 
-// Listeners
+/**
+ * Set up application event listeners
+ */
 function setupEventListeners() {
     els.searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase().trim();
         const filtered = emergencies.filter(item => 
-            item.title.toLowerCase().includes(term) || item.tags.some(tag => tag.includes(term))
+            item.title.toLowerCase().includes(term) || 
+            item.tags.some(tag => tag.includes(term))
         );
         renderCards(filtered);
     });
@@ -164,7 +173,7 @@ function setupEventListeners() {
     });
 }
 
-// Inicialização
+// App Entry Point
 document.addEventListener('DOMContentLoaded', () => {
     renderCards(emergencies);
     setupEventListeners();
