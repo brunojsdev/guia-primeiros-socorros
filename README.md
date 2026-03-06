@@ -11,7 +11,7 @@ O projeto foi construído para ser visualmente limpo e intuitivo:
 ## 🛠️ Tecnologias Utilizadas
 - **HTML5:** Estrutura semântica para melhor acessibilidade.
 - **CSS3 / Tailwind CSS:** Estilização utilitária e componentes personalizados como a "Timeline de Passos".
-- **JavaScript (Vanilla):** Lógica de busca em tempo real, filtragem por tags e manipulação dinâmica do DOM.
+- **JavaScript:** Lógica de busca em tempo real, filtragem por tags e manipulação dinâmica do DOM.
 - **Lucide Icons:** Biblioteca de ícones modernos e leves.
 
 ## 🚀 Como visualizar
