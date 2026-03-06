@@ -1,4 +1,4 @@
-# 🚑 Guia Vital - Primeiros Socorros
+# 🚑 Guia Básico - Primeiros Socorros
 
 Um guia interativo e responsivo de primeiros socorros desenvolvido para portfólio, focado em **UX (User Experience)** sob situações de estresse. O projeto utiliza uma paleta moderna baseada em tons de roxo e destaques em amarelo/laranja, garantindo clareza e confiabilidade.
 
