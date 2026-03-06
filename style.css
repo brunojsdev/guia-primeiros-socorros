@@ -1,25 +1,9 @@
-/* Variáveis de Cor baseadas na paleta do portfólio */
-:root {
-    --roxo-bg: #4A2B99;
-    --roxo-escuro: #150136;
-    --destaque-amarelo: #ffdd00;
-    --destaque-laranja: #ffaa00;
-    --destaque-escuro: #ff9900;
-    --texto-claro: #F4F0FF;
-    --card-bg: #FFFFFF;
+/* Ocultar visualizações via JS */
+.hidden-view { 
+    display: none !important; 
 }
 
-/* Utilitários Tailwind Customizados */
-.bg-roxo-bg { background-color: var(--roxo-bg); }
-.bg-roxo-escuro { background-color: var(--roxo-escuro); }
-.bg-card-bg { background-color: var(--card-bg); }
-.text-destaque-amarelo { color: var(--destaque-amarelo); }
-.text-texto-claro { color: var(--texto-claro); }
-.bg-destaque-laranja { background-color: var(--destaque-laranja); }
-.text-roxo-escuro { color: var(--roxo-escuro); }
-.border-destaque-laranja { border-color: var(--destaque-laranja); }
-
-/* Timeline UI */
+/* Linha da timeline para o passo a passo */
 .timeline-line::before {
     content: '';
     position: absolute;
@@ -27,25 +11,10 @@
     top: 3rem;
     bottom: -1rem;
     width: 3px;
-    background: #f1f5f9;
+    background: #f1f5f9; /* cinza bem claro */
     z-index: 0;
 }
 
 .timeline-item:last-child .timeline-line::before {
     display: none;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--roxo-escuro);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--destaque-laranja);
-    border-radius: 10px;
-    border: 3px solid var(--roxo-escuro);
 }
