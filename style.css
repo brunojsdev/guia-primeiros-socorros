@@ -1,46 +1,35 @@
-/* Ocultar visualizações dinamicamente */
+/* Ocultar visualizações */
 .hidden-view { 
     display: none !important; 
 }
 
-/* Timeline UI Melhorada */
+/* Timeline UI */
 .timeline-line::before {
     content: '';
     position: absolute;
-    left: 1.5rem; /* Centralizado com o círculo maior */
+    left: 1.5rem;
     top: 3.5rem;
     bottom: -1rem;
     width: 3px;
-    background: #e2e8f0; /* Linha sutil */
+    background: #e2e8f0;
     border-radius: 4px;
     z-index: 0;
 }
 
 .timeline-item:last-child .timeline-line::before {
-    display: none; /* Remove a linha do último item */
+    display: none;
 }
 
-/* Scrollbar elegante */
-::-webkit-scrollbar { 
-    width: 8px; 
-}
-
-::-webkit-scrollbar-track { 
-    background: #150136; 
-}
-
+/* Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #150136; }
 ::-webkit-scrollbar-thumb { 
     background: #4A2B99; 
     border-radius: 8px; 
 }
+::-webkit-scrollbar-thumb:hover { background: #ffaa00; }
 
-::-webkit-scrollbar-thumb:hover { 
-    background: #ffaa00; 
-}
-
-/* Foco suave para botões e inputs (Acessibilidade) */
-button:focus-visible, 
-input:focus-visible {
+button:focus-visible, input:focus-visible {
     outline: 2px solid #ffdd00;
     outline-offset: 2px;
 }
