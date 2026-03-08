@@ -2,7 +2,7 @@
 
 Um guia interativo de alta fidelidade desenvolvido para portfólio. Este projeto simula uma aplicação moderna de saúde, focada em fornecer protocolos de emergência de forma clara, rápida e visualmente atraente, utilizando princípios de **UX Design** e micro-interações.
 
-![Preview do Projeto](link-da-sua-imagem-aqui.png)
+![Preview do Projeto](img/preview.png)
 
 ## 🌟 O que há de novo nesta versão
 - **Animação Heartbeat:** Ícone de pulsação cardíaca realista via CSS Keyframes.
@@ -25,6 +25,7 @@ Um guia interativo de alta fidelidade desenvolvido para portfólio. Este projeto
 - `index.html`: Esqueleto semântico e importação de fontes/scripts.
 - `style.css`: Estilização da timeline, scrollbars e classes de utilidade.
 - `script.js`: Base de dados das emergências e lógica de manipulação do DOM.
+- `img/`: Pasta contendo os ativos visuais e screenshots do projeto.
 
 ## ⚖️ Aviso Legal
 Este projeto tem fins **estritamente educativos**. Não substitui o diagnóstico médico ou treinamento profissional em suporte básico de vida. Em emergências reais, contacte sempre o **192 (SAMU)** ou **193 (Bombeiros)**.
