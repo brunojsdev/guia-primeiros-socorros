@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guia Vital | Primeiros Socorros</title>
     
-    <!-- Google Fonts: Inter para um visual bem Apple/Nubank -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Configuração Avançada do Tailwind -->
+    <!-- Configuração do Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -29,10 +29,9 @@
                         'destaque-escuro': '#ff9900',
                         'texto-claro': '#F4F0FF',
                         'card-bg': '#FFFFFF',
-                        'coracao': '#ff3366', // Vermelho vibrante/rosado para o coração
+                        'coracao': '#ff3366',
                     },
                     keyframes: {
-                        // Animação customizada simulando um batimento cardíaco real (dois picos rápidos)
                         heartbeat: {
                             '0%, 100%': { transform: 'scale(1)' },
                             '14%': { transform: 'scale(1.15)' },
@@ -57,18 +56,18 @@
 </head>
 <body class="bg-roxo-bg text-slate-800 min-h-screen flex flex-col antialiased">
 
-    <!-- Header Full-width Premium -->
-    <header class="bg-roxo-escuro w-full shadow-lg sticky top-0 z-40 border-b border-white/5">
-        <div class="w-full px-4 md:px-8 h-20 flex items-center justify-between">
+    <!-- Header (Destravado/Static) -->
+    <header class="bg-roxo-escuro w-full shadow-lg z-40 border-b border-white/5">
+        <div class="w-full px-4 md:px-8 h-20 flex items-center justify-between relative">
             
-            <!-- Botão Voltar (Extrema Esquerda) -->
+            <!-- Botão Voltar -->
             <a href="https://brunojsdev.github.io/meu-portfolio/" class="flex items-center gap-2 text-destaque-amarelo text-xs md:text-sm font-bold hover:text-white transition-colors group px-3 py-2 rounded-xl hover:bg-white/10 border border-transparent hover:border-white/10">
                 <i data-lucide="arrow-left" class="w-4 h-4 group-hover:-translate-x-1 transition-transform"></i>
                 <span class="hidden sm:inline">Voltar ao Portfólio</span>
                 <span class="sm:hidden">Voltar</span>
             </a>
             
-            <!-- Logo (Centro) com o Coração Animado e Maior -->
+            <!-- Logo Centralizado -->
             <div class="flex items-center gap-3 absolute left-1/2 transform -translate-x-1/2">
                 <div class="bg-white/5 p-2.5 rounded-2xl border border-white/10 shadow-inner">
                     <i data-lucide="heart-pulse" class="w-7 h-7 text-coracao animate-heartbeat drop-shadow-md"></i>
@@ -80,27 +79,23 @@
         </div>
     </header>
 
-    <!-- ÁREA DE MENU PRINCIPAL -->
+    <!-- MENU PRINCIPAL -->
     <main id="view-menu" class="flex-grow w-full px-4 md:px-8 py-10 max-w-7xl mx-auto">
-        
-        <!-- Aviso Legal Integrado (Design mais elegante) -->
-        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-6 mb-12 shadow-[0_10px_30px_rgba(255,170,0,0.2)] flex flex-col sm:flex-row items-start sm:items-center gap-5 border border-white/20 relative overflow-hidden">
-            <!-- Detalhe visual de fundo -->
-            <div class="absolute right-0 top-0 w-32 h-32 bg-white/20 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-            
+        <!-- Banner Aviso -->
+        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-6 mb-12 shadow-[0_10px_30px_rgba(255,170,0,0.2)] flex flex-col sm:flex-row items-center gap-5 border border-white/20 relative overflow-hidden text-center sm:text-left">
             <div class="bg-roxo-escuro text-destaque-amarelo p-3.5 rounded-2xl shrink-0 shadow-lg">
                 <i data-lucide="shield-alert" class="w-7 h-7"></i>
             </div>
             <div class="relative z-10">
                 <h2 class="text-roxo-escuro font-black text-lg uppercase tracking-tight mb-1">Atenção ao Uso</h2>
                 <p class="text-roxo-escuro/90 text-sm font-medium leading-relaxed max-w-3xl">
-                    Este é um projeto acadêmico de demonstração técnica (Portfólio). <strong>Não substitui orientação médica.</strong> Em emergências reais, acione imediatamente o SAMU (192) ou Bombeiros (193).
+                    Este é um projeto acadêmico de demonstração técnica. <strong>Não substitui orientação médica.</strong> Em emergências reais, acione o SAMU (192).
                 </p>
             </div>
         </div>
 
         <!-- Título e Busca -->
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
             <div class="text-texto-claro">
                 <h2 class="text-3xl md:text-5xl font-black mb-3 tracking-tight">Qual é a emergência?</h2>
                 <p class="text-texto-claro/80 text-lg font-medium">Busque ou selecione o protocolo de atendimento.</p>
@@ -115,47 +110,26 @@
             </div>
         </div>
 
-        <!-- Grid de Cards -->
-        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            <!-- Injetado via JS -->
-        </div>
-
-        <!-- Mensagem de "Não encontrado" -->
+        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
         <div id="no-results" class="hidden-view text-center py-20 bg-roxo-escuro/30 rounded-3xl mt-6 border border-white/5 backdrop-blur-sm">
-            <div class="bg-white/10 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i data-lucide="search-x" class="w-10 h-10 text-destaque-amarelo opacity-90"></i>
-            </div>
             <h3 class="text-2xl font-black text-white mb-2">Nenhum resultado</h3>
-            <p class="text-texto-claro/70 font-medium">Tente buscar usando outros termos, como "fogo" ou "sangue".</p>
         </div>
     </main>
 
-    <!-- ÁREA DE DETALHES DA EMERGÊNCIA -->
+    <!-- DETALHES -->
     <main id="view-detail" class="hidden-view flex-grow w-full px-4 md:px-8 py-10 max-w-4xl mx-auto">
-        
-        <!-- Botão Voltar Interno -->
         <button id="btn-back" class="mb-8 flex items-center gap-2 text-texto-claro hover:text-roxo-escuro bg-white/10 hover:bg-destaque-amarelo px-6 py-3 rounded-xl backdrop-blur-sm transition-all text-sm font-bold group border border-white/20 hover:border-destaque-amarelo shadow-lg">
             <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
             Voltar às opções
         </button>
-
-        <!-- Container do Conteúdo -->
-        <article id="detail-content" class="bg-card-bg rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white">
-            <!-- Injetado via JS -->
-        </article>
-
+        <article id="detail-content" class="bg-card-bg rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white"></article>
     </main>
 
-    <!-- Footer Premium -->
     <footer class="bg-roxo-escuro py-10 text-center mt-auto w-full border-t border-white/5">
-        <div class="flex items-center justify-center gap-3 mb-4">
-            <i data-lucide="phone-call" class="w-5 h-5 text-destaque-amarelo"></i>
-            <p class="text-destaque-amarelo font-black text-lg tracking-wider">EMERGÊNCIAS: LIGUE 192</p>
-        </div>
-        <p class="text-texto-claro/40 text-xs font-medium uppercase tracking-widest">© 2026 Desenvolvido por Bruno - Projeto de Portfólio</p>
+        <p class="text-destaque-amarelo font-black text-lg tracking-wider mb-2 uppercase">EMERGÊNCIAS: LIGUE 192</p>
+        <p class="text-texto-claro/40 text-xs font-medium uppercase tracking-widest">© 2026 Desenvolvido por Bruno</p>
     </footer>
 
-    <!-- LÓGICA DO APLICATIVO -->
     <script src="script.js"></script>
 </body>
 </html>
