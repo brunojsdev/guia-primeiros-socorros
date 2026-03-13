@@ -1,31 +1,27 @@
-/* Oculta elementos da interface, mas permite transições quando exibidos */
+/* Utilidade para alternar entre as seções do app */
 .hidden-view { 
     display: none !important; 
 }
 
-/* Estilização da linha vertical (Timeline) no passo a passo */
-.timeline-item {
-    position: relative;
-}
-
-.timeline-item::before {
+/* TIMELINE UI: Cria a linha vertical conectando os passos (1, 2, 3...) */
+.timeline-line::before {
     content: '';
     position: absolute;
-    left: 1.5rem; /* Alinhado com o centro do círculo */
-    top: 3.5rem;  /* Começa abaixo do círculo */
-    bottom: -1rem; /* Estende até o próximo item */
+    left: 1.5rem; /* Centraliza a linha sob o círculo numérico */
+    top: 3.5rem;
+    bottom: -1rem;
     width: 3px;
-    background: #e2e8f0; /* Cor suave para a linha */
+    background: #e2e8f0;
     border-radius: 4px;
     z-index: 0;
 }
 
-/* Remove a linha do último item para um acabamento limpo */
-.timeline-item:last-child::before {
+/* Remove a linha do último item da lista */
+.timeline-item:last-child .timeline-line::before {
     display: none;
 }
 
-/* Customização da barra de rolagem (Scrollbar) */
+/* CUSTOM SCROLLBAR: Estiliza a barra de rolagem lateral */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #150136; }
 ::-webkit-scrollbar-thumb { 
@@ -34,37 +30,8 @@
 }
 ::-webkit-scrollbar-thumb:hover { background: #ffaa00; }
 
-/* Foco acessível para navegação por teclado */
+/* FOCO ACESSÍVEL: Melhora a visibilidade ao usar o teclado (Tab) */
 button:focus-visible, input:focus-visible {
     outline: 2px solid #ffdd00;
     outline-offset: 2px;
-}
-
-/* Estilos adicionais para o novo botão do portfólio no cabeçalho */
-.back-portfolio-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: #ffdd00;
-    font-size: 0.875rem;
-    font-weight: 700;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.75rem;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
-    text-decoration: none;
-}
-
-.back-portfolio-btn:hover {
-    color: #FFFFFF;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.1);
-}
-
-.back-portfolio-btn span {
-    transition: transform 0.3s ease;
-}
-
-.back-portfolio-btn:hover span {
-    transform: translateX(-4px);
 }
