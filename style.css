@@ -1,13 +1,13 @@
-/* Utilidade para alternar entre as seções do app */
+/* Ocultar visualizações */
 .hidden-view { 
     display: none !important; 
 }
 
-/* TIMELINE UI: Cria a linha vertical conectando os passos (1, 2, 3...) */
+/* Timeline UI */
 .timeline-line::before {
     content: '';
     position: absolute;
-    left: 1.5rem; /* Centraliza a linha sob o círculo numérico */
+    left: 1.5rem;
     top: 3.5rem;
     bottom: -1rem;
     width: 3px;
@@ -16,12 +16,11 @@
     z-index: 0;
 }
 
-/* Remove a linha do último item da lista */
 .timeline-item:last-child .timeline-line::before {
     display: none;
 }
 
-/* CUSTOM SCROLLBAR: Estiliza a barra de rolagem lateral */
+/* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: #150136; }
 ::-webkit-scrollbar-thumb { 
@@ -30,7 +29,6 @@
 }
 ::-webkit-scrollbar-thumb:hover { background: #ffaa00; }
 
-/* FOCO ACESSÍVEL: Melhora a visibilidade ao usar o teclado (Tab) */
 button:focus-visible, input:focus-visible {
     outline: 2px solid #ffdd00;
     outline-offset: 2px;
