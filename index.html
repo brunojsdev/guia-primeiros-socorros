@@ -16,7 +16,9 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
                     colors: {
                         'roxo-bg': '#4A2B99',      
                         'roxo-escuro': '#150136',  
@@ -36,13 +38,16 @@
                             '70%': { transform: 'scale(1)' },
                         }
                     },
-                    animation: { heartbeat: 'heartbeat 1.5s ease-in-out infinite' }
+                    animation: {
+                        heartbeat: 'heartbeat 1.5s ease-in-out infinite',
+                    }
                 }
             }
         }
     </script>
 
     <script src="https://unpkg.com/lucide@latest"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-roxo-bg text-slate-800 min-h-screen flex flex-col antialiased">
@@ -67,14 +72,14 @@
     </header>
 
     <main id="view-menu" class="flex-grow w-full px-4 md:px-8 py-10 max-w-7xl mx-auto">
-        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-6 mb-12 shadow-lg flex flex-col sm:flex-row items-center gap-5 border border-white/20 text-center sm:text-left">
+        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-6 mb-12 shadow-[0_10px_30px_rgba(255,170,0,0.2)] flex flex-col sm:flex-row items-center gap-5 border border-white/20 relative overflow-hidden text-center sm:text-left">
             <div class="bg-roxo-escuro text-destaque-amarelo p-3.5 rounded-2xl shrink-0 shadow-lg">
                 <i data-lucide="shield-alert" class="w-7 h-7"></i>
             </div>
             <div class="relative z-10">
                 <h2 class="text-roxo-escuro font-black text-lg uppercase tracking-tight mb-1">Atenção ao Uso</h2>
                 <p class="text-roxo-escuro/90 text-sm font-medium leading-relaxed max-w-3xl">
-                    Este é um projeto acadêmico. <strong>Não substitui orientação médica.</strong> Em emergências reais, ligue 192.
+                    Este é um projeto acadêmico de demonstração técnica. <strong>Não substitui orientação médica.</strong> Em emergências reais, acione o SAMU (192).
                 </p>
             </div>
         </div>
@@ -84,6 +89,7 @@
                 <h2 class="text-3xl md:text-5xl font-black mb-3 tracking-tight">Qual é a emergência?</h2>
                 <p class="text-texto-claro/80 text-lg font-medium">Busque ou selecione o protocolo de atendimento.</p>
             </div>
+            
             <div class="relative w-full md:w-96 shrink-0 group">
                 <div class="absolute inset-y-0 left-5 flex items-center pointer-events-none text-slate-400 group-focus-within:text-roxo-bg transition-colors">
                     <i data-lucide="search" class="w-5 h-5"></i>
@@ -94,14 +100,13 @@
         </div>
 
         <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
-        
         <div id="no-results" class="hidden-view text-center py-20 bg-roxo-escuro/30 rounded-3xl mt-6 border border-white/5 backdrop-blur-sm">
-            <h3 class="text-2xl font-black text-white mb-2">Nenhum resultado encontrado</h3>
+            <h3 class="text-2xl font-black text-white mb-2">Nenhum resultado</h3>
         </div>
     </main>
 
     <main id="view-detail" class="hidden-view flex-grow w-full px-4 md:px-8 py-10 max-w-4xl mx-auto">
-        <button id="btn-back" class="mb-8 flex items-center gap-2 text-texto-claro hover:text-roxo-escuro bg-white/10 hover:bg-destaque-amarelo px-6 py-3 rounded-xl backdrop-blur-sm transition-all text-sm font-bold group border border-white/20 shadow-lg">
+        <button id="btn-back" class="mb-8 flex items-center gap-2 text-texto-claro hover:text-roxo-escuro bg-white/10 hover:bg-destaque-amarelo px-6 py-3 rounded-xl backdrop-blur-sm transition-all text-sm font-bold group border border-white/20 hover:border-destaque-amarelo shadow-lg">
             <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
             Voltar às opções
         </button>
