@@ -1,8 +1,4 @@
-/* 
- * Estilos customizados adicionais ao Tailwind CSS
- */
-
-/* Oculta elementos da interface, mas permite transições quando exibidos via JS */
+/* Oculta elementos da interface, mas permite transições quando exibidos */
 .hidden-view { 
     display: none !important; 
 }
@@ -19,7 +15,7 @@
     top: 3.5rem;  /* Começa abaixo do círculo */
     bottom: -1rem; /* Estende até o próximo item */
     width: 3px;
-    background: #e2e8f0; /* Cor cinza suave para a linha */
+    background: #e2e8f0; /* Cor suave para a linha */
     border-radius: 4px;
     z-index: 0;
 }
@@ -29,26 +25,46 @@
     display: none;
 }
 
-/* Customização da barra de rolagem (Scrollbar) para combinar com o tema escuro */
-::-webkit-scrollbar { 
-    width: 8px; 
-}
-
-::-webkit-scrollbar-track { 
-    background: #150136; /* Cor roxo-escuro */
-}
-
+/* Customização da barra de rolagem (Scrollbar) */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #150136; }
 ::-webkit-scrollbar-thumb { 
-    background: #4A2B99; /* Cor roxo-bg */
+    background: #4A2B99; 
     border-radius: 8px; 
 }
+::-webkit-scrollbar-thumb:hover { background: #ffaa00; }
 
-::-webkit-scrollbar-thumb:hover { 
-    background: #ffaa00; /* Cor destaque-laranja no hover */
+/* Foco acessível para navegação por teclado */
+button:focus-visible, input:focus-visible {
+    outline: 2px solid #ffdd00;
+    outline-offset: 2px;
 }
 
-/* Foco acessível para navegação por teclado (Acessibilidade) */
-button:focus-visible, input:focus-visible {
-    outline: 2px solid #ffdd00; /* Cor destaque-amarelo */
-    outline-offset: 2px;
+/* Estilos adicionais para o novo botão do portfólio no cabeçalho */
+.back-portfolio-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffdd00;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.back-portfolio-btn:hover {
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.back-portfolio-btn span {
+    transition: transform 0.3s ease;
+}
+
+.back-portfolio-btn:hover span {
+    transform: translateX(-4px);
 }
