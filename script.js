@@ -171,15 +171,6 @@ function renderDetail(id) {
 
 // 4. EVENT LISTENERS
 function setupEventListeners() {
-    // Filtro de Busca Dinâmica
-    els.searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase().trim();
-        const filtered = emergencies.filter(item => 
-            item.title.toLowerCase().includes(term) || 
-            item.tags.some(tag => tag.includes(term))
-        );
-        renderCards(filtered);
-    });
 
     // Delegação de eventos para os cards
     els.cardsGrid.addEventListener('click', (e) => {
