@@ -2,8 +2,6 @@
 
 Um guia interativo de alta fidelidade desenvolvido para portfólio. Este projeto simula uma aplicação moderna de saúde, focada em fornecer protocolos de emergência de forma clara, rápida e visualmente atraente, utilizando princípios de **UX Design** e micro-interações.
 
-![Preview do Projeto](img/preview.png)
-
 ## 🌟 O que há de novo nesta versão
 - **Animação Heartbeat:** Ícone de pulsação cardíaca realista via CSS Keyframes.
 - **Design Premium:** Bordas ultra-arredondadas, sombras suaves e tipografia densa (Inter).
