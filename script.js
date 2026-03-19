@@ -62,12 +62,11 @@ const emergencies = [
     }
 ];
 
-// 2. ELEMENTOS DO DOM
+// 2. ELEMENTOS DO DOM (Sem o searchInput)
 const els = {
     viewMenu: document.getElementById('view-menu'),
     viewDetail: document.getElementById('view-detail'),
     cardsGrid: document.getElementById('cards-grid'),
-    searchInput: document.getElementById('search-input'),
     noResults: document.getElementById('no-results'),
     detailContent: document.getElementById('detail-content'),
     btnBack: document.getElementById('btn-back')
@@ -93,16 +92,16 @@ function renderCards(data) {
     els.noResults.classList.add('hidden-view');
 
     const html = data.map(item => `
-        <button data-id="${item.id}" class="emergency-card bg-card-bg p-8 rounded-[2rem] text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(21,1,54,0.15)] group border-2 border-slate-100 hover:border-destaque-laranja flex flex-col h-full relative overflow-hidden">
+        <button data-id="${item.id}" class="emergency-card bg-card-bg p-6 md:p-8 rounded-[2rem] text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(21,1,54,0.15)] group border-2 border-slate-100 hover:border-destaque-laranja flex flex-col h-full relative overflow-hidden">
             
             <div class="absolute -right-6 -top-6 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-destaque-laranja/5 transition-colors duration-500"></div>
 
             <div class="relative z-10">
-                <div class="bg-roxo-bg w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-destaque-laranja transition-colors duration-300 shadow-lg">
-                    <i data-lucide="${item.icon}" class="w-8 h-8 text-white group-hover:text-roxo-escuro transition-colors"></i>
+                <div class="bg-roxo-bg w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-destaque-laranja transition-colors duration-300 shadow-lg">
+                    <i data-lucide="${item.icon}" class="w-7 h-7 md:w-8 md:h-8 text-white group-hover:text-roxo-escuro transition-colors"></i>
                 </div>
-                <h3 class="text-2xl font-black text-roxo-escuro mb-3 tracking-tight">${item.title}</h3>
-                <p class="text-slate-500 font-medium text-sm leading-relaxed mt-auto flex items-center gap-2 group-hover:text-destaque-escuro transition-colors">
+                <h3 class="text-xl md:text-2xl font-black text-roxo-escuro mb-2 md:mb-3 tracking-tight">${item.title}</h3>
+                <p class="text-slate-500 font-medium text-xs md:text-sm leading-relaxed mt-auto flex items-center gap-2 group-hover:text-destaque-escuro transition-colors">
                     Ver protocolo <i data-lucide="arrow-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transform -translate-x-2 group-hover:translate-x-0 transition-all"></i>
                 </p>
             </div>
@@ -118,30 +117,30 @@ function renderDetail(id) {
     if (!item) return;
 
     const stepsHtml = item.steps.map((step, index) => `
-        <div class="relative pl-16 pb-12 timeline-item">
+        <div class="relative pl-14 md:pl-16 pb-10 md:pb-12 timeline-item">
             <div class="timeline-line"></div>
-            <div class="absolute left-0 top-0 w-12 h-12 bg-roxo-bg text-destaque-amarelo rounded-full flex items-center justify-center font-black shadow-lg z-10 text-xl border-4 border-white">
+            <div class="absolute left-0 top-0 w-10 h-10 md:w-12 md:h-12 bg-roxo-bg text-destaque-amarelo rounded-full flex items-center justify-center font-black shadow-lg z-10 text-lg md:text-xl border-4 border-white">
                 ${index + 1}
             </div>
-            <h4 class="text-xl font-black text-roxo-escuro mb-3 pt-2">${step.t}</h4>
-            <p class="text-slate-600 font-medium leading-relaxed text-base">${step.c}</p>
+            <h4 class="text-lg md:text-xl font-black text-roxo-escuro mb-2 md:mb-3 pt-1 md:pt-2">${step.t}</h4>
+            <p class="text-slate-600 font-medium leading-relaxed text-sm md:text-base">${step.c}</p>
         </div>
     `).join('');
 
     els.detailContent.innerHTML = `
-        <div class="bg-gradient-to-br from-roxo-bg via-roxo-bg to-[#331C70] p-8 md:p-12 relative overflow-hidden">
+        <div class="bg-gradient-to-br from-roxo-bg via-roxo-bg to-[#331C70] p-6 md:p-12 relative overflow-hidden">
             <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 24px 24px;"></div>
             
-            <div class="flex items-center gap-6 relative z-10">
-                <div class="bg-white p-5 rounded-3xl shadow-2xl transform -rotate-6">
-                    <i data-lucide="${item.icon}" class="w-12 h-12 text-destaque-laranja"></i>
+            <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-6 relative z-10">
+                <div class="bg-white p-4 md:p-5 rounded-3xl shadow-2xl transform -rotate-6 w-max">
+                    <i data-lucide="${item.icon}" class="w-10 h-10 md:w-12 md:h-12 text-destaque-laranja"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">${item.title}</h2>
+                <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">${item.title}</h2>
             </div>
         </div>
         
-        <div class="p-8 md:p-12 bg-white">
-            <h3 class="text-sm uppercase tracking-widest text-slate-400 font-black mb-10 flex items-center gap-2">
+        <div class="p-6 md:p-12 bg-white">
+            <h3 class="text-xs md:text-sm uppercase tracking-widest text-slate-400 font-black mb-8 md:mb-10 flex items-center gap-2">
                 <i data-lucide="list-ordered" class="w-5 h-5"></i>
                 Passo a Passo
             </h3>
@@ -150,13 +149,13 @@ function renderDetail(id) {
                 ${stepsHtml}
             </div>
 
-            <div class="mt-8 bg-yellow-50 border border-destaque-laranja/30 rounded-3xl p-6 md:p-8 flex gap-5 items-start shadow-inner">
+            <div class="mt-6 md:mt-8 bg-yellow-50 border border-destaque-laranja/30 rounded-3xl p-5 md:p-8 flex flex-col md:flex-row gap-4 md:gap-5 items-start shadow-inner">
                 <div class="bg-white p-3 rounded-2xl shadow-sm shrink-0">
-                    <i data-lucide="triangle-alert" class="w-8 h-8 text-destaque-laranja"></i>
+                    <i data-lucide="triangle-alert" class="w-6 h-6 md:w-8 md:h-8 text-destaque-laranja"></i>
                 </div>
                 <div>
-                    <h5 class="text-destaque-escuro font-black uppercase tracking-widest text-sm mb-2">Aviso Crítico</h5>
-                    <p class="text-slate-700 font-semibold leading-relaxed text-base">${item.warning}</p>
+                    <h5 class="text-destaque-escuro font-black uppercase tracking-widest text-xs md:text-sm mb-1 md:mb-2">Aviso Crítico</h5>
+                    <p class="text-slate-700 font-semibold leading-relaxed text-sm md:text-base">${item.warning}</p>
                 </div>
             </div>
         </div>
@@ -180,11 +179,10 @@ function setupEventListeners() {
         }
     });
 
-    // Botão Voltar
+    // Botão Voltar (Sem o reset da busca)
     els.btnBack.addEventListener('click', () => {
         els.viewDetail.classList.add('hidden-view');
         els.viewMenu.classList.remove('hidden-view');
-        els.searchInput.value = ''; // Reseta a busca
         renderCards(emergencies);
     });
 }
