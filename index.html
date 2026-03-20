@@ -73,38 +73,34 @@
         </div>
     </header>
 
-    <main id="view-menu" class="flex-grow w-full px-4 md:px-8 py-10 max-w-7xl mx-auto">
+    <main id="view-menu" class="flex-grow w-full px-4 md:px-8 py-6 md:py-10 max-w-7xl mx-auto">
         
-        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-6 mb-12 shadow-[0_10px_30px_rgba(255,170,0,0.2)] flex flex-col sm:flex-row items-center gap-5 border border-white/20 relative overflow-hidden text-center sm:text-left">
-            
-            <div class="bg-roxo-escuro text-destaque-amarelo p-3.5 rounded-2xl shrink-0 shadow-lg">
-                <i data-lucide="shield-alert" class="w-7 h-7"></i>
+        <div class="bg-gradient-to-r from-destaque-laranja to-destaque-amarelo rounded-3xl p-5 md:p-6 mb-8 md:mb-12 shadow-[0_10px_30px_rgba(255,170,0,0.2)] flex flex-col sm:flex-row items-center gap-4 md:gap-5 border border-white/20 relative overflow-hidden text-center sm:text-left">
+            <div class="bg-roxo-escuro text-destaque-amarelo p-3 md:p-3.5 rounded-2xl shrink-0 shadow-lg">
+                <i data-lucide="shield-alert" class="w-6 h-6 md:w-7 md:h-7"></i>
             </div>
-
             <div class="relative z-10 flex-grow">
-            <h2 class="text-roxo-escuro font-black text-lg uppercase tracking-tight mb-1">
-            Atenção ao Uso:
-            </h2>
-            <p class="text-roxo-escuro/90 text-sm font-medium leading-relaxed">
-                Este é um projeto acadêmico de demonstração técnica. <strong>Não substitui orientação médica.</strong> 
-                Em emergências reais, acione o SAMU (192) ou os Bombeiros (193).
-            </p>
+                <h2 class="text-roxo-escuro font-black text-base md:text-lg uppercase tracking-tight mb-1">
+                    Atenção ao Uso:
+                </h2>
+                <p class="text-roxo-escuro/90 text-xs md:text-sm font-medium leading-relaxed">
+                    Este é um projeto acadêmico de demonstração técnica. <strong>Não substitui orientação médica.</strong> 
+                    Em emergências reais, acione o SAMU (192) ou os Bombeiros (193).
+                </p>
             </div>
-            
         </div>
 
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12">
+        <div class="mb-8 md:mb-12 text-center md:text-left">
             <div class="text-texto-claro">
-                <h2 class="text-3xl md:text-5xl font-black mb-3 tracking-tight">Qual é a emergência?</h2>
-                <p class="text-texto-claro/80 text-lg font-medium">Busque ou selecione o protocolo de atendimento.</p>
+                <h2 class="text-3xl md:text-5xl font-black mb-2 md:mb-3 tracking-tight">Qual é a emergência?</h2>
+                <p class="text-texto-claro/80 text-base md:text-lg font-medium">Selecione o protocolo de atendimento.</p>
             </div>
-
-            
-    </div>
-        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"></div>
+        </div>
+        
+        <div id="cards-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8"></div>
         <div id="no-results" class="hidden-view text-center py-20 bg-roxo-escuro/30 rounded-3xl mt-6 border border-white/5 backdrop-blur-sm">
             <h3 class="text-2xl font-black text-white mb-2">Nenhum resultado</h3>
-    </div>
+        </div>
         
     </main>
 
