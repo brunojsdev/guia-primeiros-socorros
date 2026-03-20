@@ -7,7 +7,8 @@
 .timeline-line::before {
     content: '';
     position: absolute;
-    left: 1.5rem;
+    /* Ajuste responsivo feito usando calc() para manter no centro da bolinha */
+    left: 1.25rem; /* Centralizado para bolinha de 40px no mobile */
     top: 3.5rem;
     bottom: -1rem;
     width: 3px;
@@ -32,4 +33,10 @@
 button:focus-visible, input:focus-visible {
     outline: 2px solid #ffdd00;
     outline-offset: 2px;
+}
+
+@media (min-width: 768px) {
+    .timeline-line::before {
+        left: 1.5rem; /* Centralizado para bolinha de 48px no desktop */
+    }
 }
