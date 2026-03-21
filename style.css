@@ -3,7 +3,7 @@
     display: none !important; 
 }
 
-/* Timeline UI */
+/* Timeline UI */ 
 .timeline-line::before {
     content: '';
     position: absolute;
